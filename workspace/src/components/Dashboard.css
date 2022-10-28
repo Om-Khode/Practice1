@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
+
+.Dashboard {
+  background-color: #000000;
+  color: white;
+  width: 81.35vw;
+  position: absolute;
+  /* width: 1246px; */
+  height: 12vh;
+  left: 16.65vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.one {
+  display: flex;
+  justify-content: space-between;
+  width: 40vw;
+  margin-left: 18px;
+}
+.text {
+  /* position: absolute; */
+  width: 10.54vw;
+  height: 5.04vh;
+  left: 2.473vw;
+  top: 4.2vh;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin: 0px;
+}
+
+.searchbar {
+  background-color: #252525;
+  border-radius: 10px;
+
+  /* position: absolute; */
+  width: 23.82vw;
+  height: 5.6vh;
+  left: 16.21vw;
+  top: 4.2vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bar {
+  background-color: #252525;
+  color: #7a7a7a;
+  outline: none;
+  border: none;
+  /* position: absolute; */
+  width: 11.2vw;
+  height: 2.521vh;
+  left: 0.976vw;
+  top: 1.54vh;
+  margin-left: 18px;
+}
+
+.searchIcon {
+  /* position: absolute; */
+  width: 2.47vw;
+  height: 2.55vh;
+  right: 0px;
+  border-radius: 10px;
+}
+.two {
+  display: flex;
+  width: 25vw;
+  justify-content: space-around;
+}
+.helpIcon {
+  /* position: absolute; */
+  width: 5.68vh;
+  height: 5.68vh;
+  left: 58.073vw;
+  top: 4.26vh;
+
+  /* background: #252525; */
+  color: white;
+  border-radius: 10px;
+}
+
+.notiIcon {
+  /* position: absolute; */
+  width: 5.68vh;
+  height: 5.68vh;
+  left: 61.98vw;
+  top: 4.26vh;
+
+  /* Background Color/2 */
+
+  /* background: #252525; */
+  border-radius: 10px;
+}
+
+.acc {
+  /* position: absolute; */
+  width: 12vw;
+  height: 5.68vh;
+  left: 66.53vw;
+  top: 4.26vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accountIcon {
+  /* position: absolute; */
+  width: 40px;
+  height: 40px;
+  /* left: 1022px; */
+  /* top: 30px; */
+
+  background: #252525;
+  border-radius: 50px;
+}
+
+.downbutton {
+  width: 25.21px;
+  height: 24px;
+  background-color: #000000;
+}
+
+.downIcon {
+  width: 12px;
+  height: 11px;
+  background-color: #000000;
+  padding-top: 6px;
+}
+
+.btn {
+  background-color: #252525;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #252525;
+}
+
+.btn:focus {
+  background-color: #000000;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  width: 7vw;
+}
