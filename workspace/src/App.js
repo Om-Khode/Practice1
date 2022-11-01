@@ -7,14 +7,16 @@ import Recent from "./components/pages/Recent";
 import Setting from "./components/pages/Setting";
 import Support from "./components/pages/Support";
 import { Route, Routes } from "react-router-dom";
-// import LineChart from "./LineChart";
 import React from "react";
-// import Battery from "./components/Battery";
+import "./components/pages/Home.css";
+import TotalCount from "./components/TotalCount";
 
 function App() {
   return (
     <>
-      <Dashboard />
+      {/* <div className="dash">
+        <Dashboard />
+      </div>
       <SideBar />
       <div className="container">
         <Routes>
@@ -28,8 +30,8 @@ function App() {
           <Route path="/Setting" element={<Setting />} />
           <Route path="/Support" element={<Support />} />
         </Routes>
-      </div>
-      {/* <Battery /> */}
+      </div> */}
+      <TotalCount />
     </>
   );
 }

@@ -1,4 +1,5 @@
 .Line {
   width: 20vw;
   height: 5vh;
+  transform: rotateY(180deg);
 }

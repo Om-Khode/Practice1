@@ -24,12 +24,17 @@ const smallTitles = ["UV", "OV", "OCC", "OCD"];
 
 export default function Home(props) {
   const [data, setData] = useState({ count: 0, data: [] });
+  const [showMore, setShowMore] = useState(false);
+
+  function HandleClick() {
+    console.log("The Button Has Been Clicked!");
+    setShowMore(showMore ? false : true);
+  }
 
   async function fetchData() {
     let response = await axios(
       `http://172.104.207.9:8000/device/type/${props.deviceName}/1`
     );
-    console.log(props.deviceName);
     // if (data.count !== response.data.count) {
     setData(response.data);
     // }
@@ -53,90 +58,88 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="allDevice">
-        <div className="exiDevice">
-          <ul>
-            <CustomLink to="/Home">Device 1</CustomLink>
-            <CustomLink to="/Home/device2">Device 2</CustomLink>
-          </ul>
+      <div className={showMore ? "up" : "down"}>
+        <div className="allDevice">
+          <div className="exiDevice">
+            <ul>
+              <CustomLink to="/Home">Device 1</CustomLink>
+              <CustomLink to="/Home/device2">Device 2</CustomLink>
+            </ul>
+          </div>
+          <div className="addDevice">
+            <button className="add homeBtn">➕ Add Device</button>
+          </div>
         </div>
-        <div className="addDevice">
-          <button className="add homeBtn">➕ Add Device</button>
+        <div className="grid-container-bg">
+          {(() => {
+            switch (props.deviceName) {
+              case "aa01":
+                return (
+                  <>
+                    {bigTitles1.map((element1, index) => {
+                      return (
+                        <div key={index} className="child-bg">
+                          {data.data.map((element, index) => {
+                            return (
+                              <BigCard
+                                key={index}
+                                data={element}
+                                alt={element1}
+                              />
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
+                  </>
+                );
+              case "bb02":
+                return (
+                  <>
+                    {bigTitles2.map((element1, index) => {
+                      return (
+                        <div key={index} className="child-bg">
+                          {data.data.map((element, index) => {
+                            return (
+                              <BigCard
+                                key={index}
+                                data={element}
+                                alt={element1}
+                              />
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
+                  </>
+                );
+              default:
+                return null;
+            }
+          })()}
         </div>
-      </div>
-      <div className="grid-container-bg">
-        {(() => {
-          switch (props.deviceName) {
-            case "aa01":
+        <div
+          className={props.deviceName === "aa01" ? "middle" : "middle type2"}
+        >
+          <Battery />
+          <div className="grid-container-sm">
+            {smallTitles.map((element1, index) => {
               return (
-                <>
-                  {bigTitles1.map((element1, index) => {
+                <div key={index} className="child-sm">
+                  {data.data.map((element, index) => {
                     return (
-                      <div key={index} className="child-bg">
-                        {data.data.map((element, index) => {
-                          return (
-                            <BigCard
-                              key={index}
-                              data={element}
-                              alt={element1}
-                            />
-                          );
-                        })}
-                      </div>
+                      <SmallCard key={index} data={element} alt={element1} />
                     );
                   })}
-                </>
+                </div>
               );
-            case "bb02":
-              return (
-                <>
-                  {bigTitles2.map((element1, index) => {
-                    return (
-                      <div key={index} className="child-bg">
-                        {data.data.map((element, index) => {
-                          return (
-                            <BigCard
-                              key={index}
-                              data={element}
-                              alt={element1}
-                            />
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                </>
-              );
-            default:
-              return null;
-          }
-        })()}
+            })}
+          </div>
+          <button onClick={HandleClick} className="showMore">
+            {showMore ? "Show Less" : "Show More"}
+          </button>
+        </div>
       </div>
-      {/* <div className="middle"> */}
-      {/* <Battery /> */}
-      <div
-        className={
-          props.deviceName === "aa01"
-            ? "grid-container-sm"
-            : "grid-container-sm type2"
-        }
-      >
-        {smallTitles.map((element1, index) => {
-          return (
-            <div key={index} className="child-sm">
-              {data.data.map((element, index) => {
-                return <SmallCard key={index} data={element} alt={element1} />;
-              })}
-            </div>
-          );
-        })}
-      </div>
-      <button
-        className={props.deviceName === "aa01" ? "showMore" : "showMore type2"}
-      >
-        Show More
-      </button>
-      {/* </div> */}
     </>
   );
 }

@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .battery-top {
@@ -50,8 +51,14 @@
   width: 10.8vw;
   background-color: transparent;
   position: relative;
-  top: -43.5vh;
+  top: -52.5vh;
   left: -0.55vw;
   border-radius: 5px;
-  height: 17vh;
+  height: 26vh;
+}
+
+.status {
+  color: white;
+  margin: 1rem;
+  font-size: 1.2rem;
 }

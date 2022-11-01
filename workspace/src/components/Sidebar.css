@@ -5,7 +5,8 @@
   border-right: 2px solid #252525;
   color: #7a7a7a;
   position: sticky;
-  top: 100px;
+  top: 0px;
+  left: 0px;
 }
 
 .logo {
@@ -22,6 +23,7 @@
   margin: auto;
   width: 13vw;
   padding-top: 23px;
+  align-self: flex-start;
 }
 
 img {
@@ -41,6 +43,7 @@ img {
   gap: 1rem;
   width: 100%;
   margin-top: 3rem;
+  align-self: flex-start;
 }
 
 .nav a {
@@ -51,6 +54,7 @@ img {
   align-items: center;
   padding: 0.25rem;
   padding-left: 2.25rem;
+  align-self: flex-start;
 }
 
 .nav li.active {

@@ -102,7 +102,15 @@ const LineChart = (props) => {
               return null;
           }
         }),
-        borderColor: ["rgba(116, 223, 238, 1)", "rgba(209, 134, 244, 1)"],
+        gradient: {
+          borderColor: {
+            axis: "x",
+            colors: {
+              0: "#edbaff",
+              100: "#a1ffff",
+            },
+          },
+        },
       },
     ],
   };

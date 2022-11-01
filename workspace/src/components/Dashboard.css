@@ -4,6 +4,12 @@
   /* overflow: hidden; */
 }
 
+.dash {
+  position: sticky;
+  top: 0px;
+  z-index: 3;
+}
+
 .Dashboard {
   background-color: #000000;
   color: white;
@@ -11,10 +17,14 @@
   position: absolute;
   /* width: 1246px; */
   height: 12vh;
+  top: 0px;
   left: 16.65vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 3;
+  /* position: sticky;
+  top: 10px; */
 }
 .one {
   display: flex;

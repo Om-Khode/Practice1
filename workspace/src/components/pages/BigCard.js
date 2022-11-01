@@ -1,5 +1,6 @@
 import React from "react";
-import LineChart from "../../LineChart";
+import "./Home.css";
+import LineChart from "../LineChart";
 
 function BigCard(props) {
   const {
@@ -8,7 +9,7 @@ function BigCard(props) {
 
   return (
     <>
-      <span className="card-text">
+      <span style={{ fontFamily: "Times New Roman" }} className="card-text">
         <pre>{props.alt} : </pre>
       </span>
       {(() => {

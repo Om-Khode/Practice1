@@ -4,12 +4,14 @@
 }
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: #000000;
+  color: white;
 }
 .container {
+  position: absolute;
   width: 81.35vw;
-  height: 0vh;
+  height: 100vh;
   margin: 0px;
   position: relative;
   top: -88vh;
@@ -40,6 +42,9 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  font-family: "Times New Roman";
+  font-style: normal;
+  font-weight: 600;
 }
 
 .card-value {
@@ -63,7 +68,7 @@ body {
   display: inline-grid;
   grid-template-columns: auto;
   position: relative;
-  top: -40vh;
+  top: -45vh;
   border-radius: 20px;
   background-color: #252525;
 }
@@ -91,7 +96,7 @@ body {
   text-align: center;
   position: relative;
   width: 100%;
-  top: -42vh;
+  top: -47.5vh;
 }
 
 .allDevice {
@@ -147,15 +152,31 @@ body {
   width: 8vw;
 }
 
-.type2 {
-  top: -6.3vh;
-}
-
 .middle {
   position: relative;
-  background-color: red;
   height: 80vh;
   display: inline-flex;
   flex-direction: column;
   top: -75vh;
+}
+
+.type2 {
+  top: -39.3vh;
+}
+
+.up {
+  translate: 0px -100px;
+  transition: all 1s ease;
+}
+
+.down {
+  transition: all 1s ease;
+  /* overflow: hidden; */
+}
+
+.card-text {
+  font-family: "Inner";
+  font-style: normal;
+  font-weight: 600;
+  /* color: red; */
 }

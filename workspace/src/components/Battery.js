@@ -53,6 +53,7 @@ export default function Battery() {
 
   if (!data) return null;
 
+  // console.log(data.data[0].soc);
   var dataa = {
     labels: chart?.data?.map((x) => "Hello"),
     datasets: [
@@ -80,12 +81,12 @@ export default function Battery() {
     scales: {
       x: {
         display: false,
-        categoryPercentage: 1.0,
-        barPercentage: 1.0,
       },
 
       y: {
         display: false,
+        beginAtZero: true,
+        max: 100,
       },
     },
     events: [],
@@ -106,6 +107,7 @@ export default function Battery() {
         </div>
         <div className="bar">
           <Bar data={dataa} options={options} />
+          {/* <p className="status">Status: {data.data[0].soc} %</p> */}
         </div>
       </div>
     </>
