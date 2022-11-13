@@ -51,6 +51,7 @@ function CustomLink({ to, children, ...props }) {
 
   return (
     <li className={isActive ? "active" : ""}>
+      {isActive ? <div className="sideLine"></div> : null}
       <Link to={to} {...props}>
         {children}
       </Link>

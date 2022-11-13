@@ -1,15 +1,46 @@
 import React from "react";
 import { useState, useEffect } from "react";
 // import axios from "axios";
-import dataa from "./SampleData.json";
+import dataa from "./SampleData2.json";
+import "./TotalCount.css";
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import gradient from "chartjs-plugin-gradient";
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  gradient,
+  Legend
+);
 
 export default function TotalCount() {
+  const [chart, setChart] = useState({});
   const [data, setData] = useState({ count: 0, data: [] });
+  const [count, setCount] = useState(0);
   const [voltage, setVoltage] = useState([]);
   const [current, setCurrent] = useState([]);
   const [ttime, setTtime] = useState([]);
-  let [sum, setSum] = useState([]);
-  const [count, setCount] = useState(0);
+  const [ptime, setPtime] = useState([]);
+  let [sum] = useState([]);
+  let [avgsum] = useState([]);
+  let [res, setRes] = useState(0);
+  let [avgres, setAvgRes] = useState(0);
+  let result = 0;
+
+  let updatedValue = {};
 
   async function fetchData() {
     // let response = await axios(`http://172.104.207.9:8000/device/type/aa01/`);
@@ -33,106 +64,203 @@ export default function TotalCount() {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    if (count !== voltage.length) {
+  if (!data) return null;
+
+  function Setting() {
+    console.log("Setting");
+    if (count !== ttime.length) {
       data.data.map((x) => {
         return (
           setVoltage((oldArray) => [...oldArray, x.vt1]),
-          setCurrent((oldArray) => [...oldArray, x.crt]),
+          setCurrent((oldArray) => {
+            let iCrt = parseInt(x.crt, 10);
+            return [...oldArray, iCrt];
+          }),
           setTtime((oldArray) => {
-            let stime = x.dts;
-            let itime = parseInt(stime, 10);
+            let itime = parseInt(x.dts, 10);
             var d = new Date(itime);
-            // dformat =
-            //   [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/") +
-            //   " " +
-            //   [d.getHours(), d.getMinutes(), d.getSeconds()].join(":");
             return [...oldArray, d];
           })
         );
       });
     }
+  }
 
-    // eslint-disable-next-line
-  }, [data.data, count]);
-
-  console.log(ttime);
-
-  // time.forEach((element) => {
-  //   console.log(
-  //     element.getFullYear(),
-  //     element.getMonth(),
-  //     element.getDate(),
-  //     element.getHours()
-  //   );
-  // });
-
-  useEffect(() => {
+  function CalPwr() {
     let k = 0;
     let l = 0;
+    for (let i = 0; i < ttime.length; i = i + k) {
+      k = 0;
+      sum[l] = 0;
+      for (let j = i; j < ttime.length; j++) {
+        if (
+          ttime[i].getFullYear() === ttime[j].getFullYear() &&
+          ttime[i].getMonth() === ttime[j].getMonth() &&
+          ttime[i].getDate() === ttime[j].getDate() &&
+          ttime[i].getHours() === ttime[j].getHours()
+        ) {
+          if (j > 0) {
+            let temp =
+              ttime[j].getHours() +
+              ttime[j].getMinutes() / 60 -
+              (ttime[j - 1].getHours() + ttime[j - 1].getMinutes() / 60);
 
-    return () => {
-      for (let i = 0; i < 10; i = i + k) {
-        k = 0;
-        for (let j = i; j < 10; j++) {
-          if (
-            ttime[i].getFullYear() === ttime[j].getFullYear() &&
-            ttime[i].getMonth() === ttime[j].getMonth() &&
-            ttime[i].getDate() === ttime[j].getDate() &&
-            ttime[i].getHours() === ttime[j].getHours()
-          ) {
-            sum[l] += voltage[j] * current[j];
-            k++;
+            sum[l] = sum[l] + voltage[j - 1] * current[j - 1] * temp;
+            console.log(
+              "Time 1 : ",
+              ttime[j - 1],
+              "\nTime 2 : ",
+              ttime[j],
+              // ttime[j].getHours() + ttime[j].getMinutes() / 60,
+              // ttime[j - 1].getHours() + ttime[j - 1].getMinutes() / 60,
+              "\n Δt = ",
+              temp,
+              "Voltage = ",
+              voltage[j - 1],
+              "Current = ",
+              current[j - 1],
+              "Energy Consumed till Now = ",
+              sum[l]
+            );
           }
-          l++;
+          k++;
         }
       }
+      avgsum[l] = sum[l] / k;
+      sum[l] = Math.round(sum[l]);
+      l++;
+      console.log("--------------------------------------------------------");
+    }
+    console.log(sum, voltage, current);
+  }
+
+  function UpdateChart() {
+    ttime.map((x) => {
+      return setPtime((oldArray) => {
+        var d = new Date(x),
+          dformat =
+            [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/") +
+            " " +
+            [d.getHours()].join(":");
+        return [...oldArray, dformat];
+      });
+    });
+
+    sum.forEach((element) => {
+      result += element;
+    });
+
+    setRes(Math.round(result));
+
+    result = 0;
+
+    avgsum.forEach((element) => {
+      result += element;
+    });
+
+    setAvgRes(Math.round(result));
+
+    const ztime = Array.from(new Set(ptime));
+
+    updatedValue = {
+      csum: sum,
+      ctime: ztime,
     };
-  }, [ttime, sum]);
+    setChart((chart) => ({
+      ...chart,
+      ...updatedValue,
+    }));
 
-  if (!data) return null;
+    // console.log(chart.ctime);
+  }
 
-  // for (let i = 0; i < time.length - 1; i = i + k) {
-  //   for (let j = i + 1; j < time.length; j++) {
-  //     if (
-  //       time[i].getFullYear === time[j].getFullYear &&
-  //       time[i].getMonth === time[j].getMonth &&
-  //       time[i].getDate === time[j].getDate &&
-  //       time[i].getHours === time[j].getHours
-  //     ) {
-  //       // let res = 0;
-  //       // setSum((oldArray) => {
-  //       //   res += voltage[i] * current[i] + voltage[j] * current[j];
-  //       k++;
-  //       //   return [...oldArray, res];
-  //       // });
-  //       console.log("Hello");
-  //     }
-  //   }
-  // }
+  var dataaa = {
+    labels: chart?.ctime?.map((x) => x),
+    datasets: [
+      {
+        label: "",
+        data: chart?.csum?.map((x) => x),
+        gradient: {
+          backgroundColor: {
+            axis: "y",
+            colors: {
+              0: "#a1ffff",
+              380: "#edbaff",
+            },
+          },
+        },
+      },
+    ],
+  };
 
-  // for (var i = 0; i < voltage.length; i++) {
-  //   sum += voltage[i] * current[i];
-  // }
+  var avgdataaa = {
+    labels: chart?.ctime?.map((x) => x),
+    datasets: [
+      {
+        label: "",
+        data: avgsum?.map((x) => x),
+        gradient: {
+          backgroundColor: {
+            axis: "y",
+            colors: {
+              0: "#a1ffff",
+              380: "#edbaff",
+            },
+          },
+        },
+      },
+    ],
+  };
 
-  // console.log(time);
+  var options = {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+    },
+    scales: {
+      x: {
+        display: true,
+      },
 
-  // var d = new Date(time[0][0]),
-  //   dformat =
-  //     [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/") +
-  //     " " +
-  //     [d.getHours(), d.getMinutes(), d.getSeconds()].join(":");
-
-  ttime.forEach((element) => {
-    console.log(element);
-  });
+      y: {
+        display: true,
+      },
+    },
+  };
 
   return (
     <>
-      {/* <div>{voltage}</div>
-      <br />
-      <div>{current}</div> */}
-      <div>{sum}</div>
+      <div className="tbutton">
+        <button className="tcbutton" onClick={Setting}>
+          Setting
+        </button>
+        <button className="tcbutton" onClick={CalPwr}>
+          Calculate Power
+        </button>
+        <button className="tcbutton" onClick={UpdateChart}>
+          Update Chart
+        </button>
+      </div>
+      <div className="tcpower">
+        Total Power Consumed :{" "}
+        <b>
+          <i>{res}</i>
+        </b>{" "}
+        KiloWatt
+      </div>
+      <div className="tcbar">
+        <Bar data={dataaa} options={options} />
+      </div>
+      <div className="tcpower tcavg">
+        Total Avgerage Power Consumed :{" "}
+        <b>
+          <i>{avgres}</i>
+        </b>{" "}
+        KiloWatt
+      </div>
+      <div className="tcbar">
+        <Bar data={avgdataaa} options={options} />
+      </div>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import searchIcon from "./images/search.png";
 import helpIcon from "./images/help-web-button(1).png";
 import notiIcon from "./images/notification.png";
@@ -8,6 +8,8 @@ import downIcon from "./images/down-arrow.png";
 import "./Dashboard.css";
 
 export default function Dashboard() {
+  const [name, setName] = useState("");
+
   return (
     <div className="Dashboard">
       <div className="one">

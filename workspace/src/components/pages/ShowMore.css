@@ -1,0 +1,41 @@
+.smLabel {
+  /* background-color: red; */
+  color: white;
+  display: flex;
+  font-size: 22px;
+  margin: 1rem;
+}
+
+.backarrow {
+  width: 1vw;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.selected {
+  background-color: #000000;
+  color: #000000;
+  font-weight: 600;
+}
+
+.light {
+  color: white;
+  position: relative;
+  background-color: red;
+  /* font-size: 200px; */
+}
+
+.true {
+  background-color: green;
+  color: green;
+}
+
+.false {
+  background-color: red;
+  color: red;
+}
+
+.dropdown {
+  width: 80%;
+  margin: 2rem auto;
+}

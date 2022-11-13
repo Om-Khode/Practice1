@@ -99,6 +99,10 @@ body {
   top: -47.5vh;
 }
 
+.showMore a {
+  color: white;
+}
+
 .allDevice {
   display: flex;
   justify-content: space-between;
@@ -165,7 +169,7 @@ body {
 }
 
 .up {
-  translate: 0px -100px;
+  /* translate: 0px -1000px; */
   transition: all 1s ease;
 }
 

@@ -1,0 +1,39 @@
+.tcbar {
+  position: relative;
+  top: 0px;
+  width: 90vw;
+  height: 80vh;
+  margin: 20px auto;
+}
+
+.tcbutton {
+  padding: 2px;
+  color: white;
+  background-color: black;
+  font-size: 15px;
+  /* border: 2px solid white; */
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.tbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  margin: auto;
+}
+
+.tcpower {
+  text-align: center;
+  font-size: 18px;
+  margin: 23px;
+}
+
+.tcavg {
+  margin-top: 150px;
+}
+
+.tcbutton:focus {
+  outline: 2px solid white;
+}

@@ -17,70 +17,71 @@ function BigCard(props) {
           case "Voltage":
             return (
               <>
-                <span className="card-value">{vt1}</span>
+                <span className="card-value">{vt1 ? vt1 : "--"}</span>
                 <LineChart val="vt1" />
               </>
             );
           case "Voltage 1":
             return (
               <>
-                <span className="card-value">{vt1}</span>
+                <span className="card-value">{vt1 ? vt1 : "--"}</span>
                 <LineChart val="vt1" />
               </>
             );
           case "Voltage 2":
             return (
               <>
-                <span className="card-value">{vt2}</span>
+                <span className="card-value">{vt2 ? vt2 : "--"}</span>
                 <LineChart val="vt2" />
               </>
             );
           case "Current":
             return (
               <>
-                <span className="card-value">{crt}</span>
+                <span className="card-value">{crt ? crt : "--"}</span>
                 <LineChart val="crt" />
               </>
             );
           case "Capacity":
             return (
               <>
-                <span className="card-value">{cap}</span>
+                <span className="card-value">{cap ? cap : "--"}</span>
                 <LineChart val="cap" />
               </>
             );
           case "Power":
             return (
               <>
-                <span className="card-value">{trm}</span>
+                <span className="card-value">{trm ? trm : "--"}</span>
                 <LineChart val="trm" />
               </>
             );
           case "Temperature":
             return (
               <>
-                <span className="card-value">{tp1}</span>
+                <span className="card-value">{tp1 ? tp1 : "--"}</span>
                 <LineChart val="tp1" />
               </>
             );
           case "Temperature 1":
             return (
               <>
-                <span className="card-value">{tp1}</span>
+                <span className="card-value">{tp1 ? tp1 : "--"}</span>
                 <LineChart val="tp1" />
               </>
             );
           case "Temperature 2":
             return (
               <>
-                <span className="card-value">{tp2}</span>
+                <span className="card-value">{tp2 ? tp2 : "--"}</span>
                 <LineChart val="tp2" />
               </>
             );
           case "SOC":
             return (
               <>
-                <span className="card-value">{soc}</span>
+                <span className="card-value">{soc ? soc : "--"}</span>
+
                 <LineChart val="soc" />
               </>
             );

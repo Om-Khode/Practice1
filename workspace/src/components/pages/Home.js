@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import SmallCard from "./SmallCard";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Battery from "../Battery";
+import { motion } from "framer-motion";
+// import FetchDataFunc from "../FetchDataFunc";
 
 const bigTitles1 = [
   "Voltage 1",
@@ -25,9 +27,10 @@ const smallTitles = ["UV", "OV", "OCC", "OCD"];
 export default function Home(props) {
   const [data, setData] = useState({ count: 0, data: [] });
   const [showMore, setShowMore] = useState(false);
+  // const lotteries = FetchDataFunc();
 
   function HandleClick() {
-    console.log("The Button Has Been Clicked!");
+    // console.log("The Button Has Been Clicked!");
     setShowMore(showMore ? false : true);
   }
 
@@ -56,8 +59,14 @@ export default function Home(props) {
 
   if (!data) return null;
 
+  // console.log(lotteries);
+
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className={showMore ? "up" : "down"}>
         <div className="allDevice">
           <div className="exiDevice">
@@ -136,11 +145,11 @@ export default function Home(props) {
             })}
           </div>
           <button onClick={HandleClick} className="showMore">
-            {showMore ? "Show Less" : "Show More"}
+            <Link to="/Home/showMore">Show More</Link>
           </button>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }
 
