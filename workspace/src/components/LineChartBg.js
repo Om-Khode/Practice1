@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./LineChart.css";
-import dataaa from "./SampleData2.json";
+// import dataaa from "./SampleData2.json";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -106,7 +106,11 @@ const LineChartBg = (props) => {
     labels: chart?.data?.map((x) => {
       let itime = parseInt(x.dts2, 10);
       var d = new Date(itime),
-        dformat = [d.getHours().padLeft(), d.getMinutes().padLeft()].join(":");
+        dformat = [
+          d.getHours().padLeft(),
+          d.getMinutes().padLeft(),
+          d.getSeconds().padLeft(),
+        ].join(":");
       return dformat;
     }),
     datasets: [

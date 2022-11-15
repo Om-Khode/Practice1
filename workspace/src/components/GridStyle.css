@@ -58,3 +58,7 @@
   border-right: 2px solid rgba(0, 0, 0, 0.4);
   border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 }
+
+.trail {
+  background-color: #252525;
+}
