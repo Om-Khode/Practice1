@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import RGL, { WidthProvider } from "react-grid-layout";
 import "../GridStyle.css";
+import "./ShowMore.css";
 import Select from "react-select";
 import LineChartBg from "../LineChartBg";
 import { motion } from "framer-motion";
 
 export default function ShowMore() {
   let [layout1, setLayout] = useState([]);
+
+  const [defaultProps, setDefaultProps] = useState({
+    isDraggable: false,
+    isResizable: false,
+    items: 5,
+    rowHeight: 60,
+    preventCollision: false,
+    disabled: true,
+    breakpoints: { lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 },
+    // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+    cols: 12,
+  });
+
+  const [lock, setLock] = useState(false);
 
   const ReactGridLayout = WidthProvider(RGL);
 
@@ -29,16 +44,16 @@ export default function ShowMore() {
     // }
   };
 
-  const defaultProps = {
-    isDraggable: true,
-    isResizable: true,
-    items: 5,
-    rowHeight: 60,
-    preventCollision: false,
-    breakpoints: { lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 },
-    // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-    cols: 12,
-  };
+  // const defaultProps = {
+  //   isDraggable: false,
+  //   isResizable: false,
+  //   items: 5,
+  //   rowHeight: 60,
+  //   preventCollision: false,
+  //   breakpoints: { lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 },
+  //   // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+  //   cols: 12,
+  // };
 
   const customStyles = {
     option: (styles, { isFocused }) => {
@@ -89,6 +104,26 @@ export default function ShowMore() {
     addNewItem(selectedValue);
   };
 
+  function LockTheGrid() {
+    if (defaultProps.isDraggable === false) {
+      console.log("12");
+      setDefaultProps({
+        ...defaultProps,
+        isDraggable: true,
+        isResizable: true,
+      });
+    } else {
+      console.log("13");
+      setDefaultProps({
+        ...defaultProps,
+        isDraggable: false,
+        isResizable: false,
+      });
+    }
+    console.log(defaultProps);
+    return defaultProps;
+  }
+
   return (
     <>
       <motion.div
@@ -109,10 +144,13 @@ export default function ShowMore() {
             isMulti
             isClearable
           />
+          <button onClick={() => LockTheGrid()}>Lock</button>
           <ReactGridLayout
             {...defaultProps}
+            onDragStart={lock ? null : ""}
             onLayoutChange={() => setLayout(layout1)}
           >
+            {console.log(defaultProps)}
             {selectedValue.some((x) => x === 1) && (
               <div key={1} data-grid={layout1[0]}>
                 <LineChartBg val="vt1" />

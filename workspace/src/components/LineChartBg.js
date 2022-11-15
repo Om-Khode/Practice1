@@ -109,7 +109,7 @@ const LineChartBg = (props) => {
         dformat = [
           d.getHours().padLeft(),
           d.getMinutes().padLeft(),
-          d.getSeconds().padLeft(),
+          // d.getSeconds().padLeft(),
         ].join(":");
       return dformat;
     }),
