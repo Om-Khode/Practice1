@@ -1,12 +1,45 @@
 import React, { useState } from "react";
-import "./ShowMore.css";
+import RGL, { WidthProvider } from "react-grid-layout";
+import "../GridStyle.css";
 import Select from "react-select";
-import backArrow from "../images/back-arrow.png";
 import LineChartBg from "../LineChartBg";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const ShowMore = () => {
+export default function ShowMore() {
+  let [layout1, setLayout] = useState([]);
+
+  const ReactGridLayout = WidthProvider(RGL);
+
+  const addNewItem = (n) => {
+    // if (layout1.some((item) => item.i === n)) {
+    //   setLayout((current) => current.filter((item) => item.i !== n));
+    //   return layout1;
+    // } else {
+    setLayout([
+      ...layout1,
+      {
+        i: n,
+        x: 0,
+        y: 0,
+        w: 5,
+        h: 3,
+      },
+    ]);
+    return layout1;
+    // }
+  };
+
+  const defaultProps = {
+    isDraggable: true,
+    isResizable: true,
+    items: 5,
+    rowHeight: 60,
+    preventCollision: false,
+    breakpoints: { lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 },
+    // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+    cols: 12,
+  };
+
   const customStyles = {
     option: (styles, { isFocused }) => {
       return {
@@ -41,7 +74,7 @@ const ShowMore = () => {
     },
     {
       value: 6,
-      label: "Temperature",
+      label: "Temperature 2",
     },
     {
       value: 7,
@@ -53,96 +86,78 @@ const ShowMore = () => {
 
   const handleChange = (e) => {
     setSelectedValue(Array.isArray(e) ? e.map((x) => x.value) : []);
+    addNewItem(selectedValue);
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <div>
-        <div className="smLabel">
-          <Link to="/Home">
-            <img className="backarrow" src={backArrow} alt="" />
-          </Link>
-          <b>Device 1</b>
-        </div>
-      </div>
-
-      <Select
-        className="dropdown"
-        styles={customStyles}
-        width="100%"
-        menuColor="red"
-        placeholder="Select Option"
-        value={data.filter((obj) => selectedValue.includes(obj.value))}
-        options={data}
-        onChange={handleChange}
-        isMulti
-        isClearable
-      />
-
-      <div>
+    <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div>
-          {selectedValue.some((x) => x === 1) && (
-            <div>
-              <LineChartBg val="vt1" />
-              Voltage 1
-            </div>
-          )}
+          <Select
+            className="dropdown"
+            styles={customStyles}
+            width="100%"
+            menuColor="red"
+            placeholder="Select Option"
+            value={data.filter((obj) => selectedValue.includes(obj.value))}
+            options={data}
+            onChange={handleChange}
+            isMulti
+            isClearable
+          />
+          <ReactGridLayout
+            {...defaultProps}
+            onLayoutChange={() => setLayout(layout1)}
+          >
+            {selectedValue.some((x) => x === 1) && (
+              <div key={1} data-grid={layout1[0]}>
+                <LineChartBg val="vt1" />
+                Voltage 1
+              </div>
+            )}
+            {selectedValue.some((x) => x === 2) && (
+              <div key={2} data-grid={layout1[0]}>
+                <LineChartBg val="vt2" />
+                Voltage 2
+              </div>
+            )}
+            {selectedValue.some((x) => x === 3) && (
+              <div key={3} data-grid={layout1[0]}>
+                <LineChartBg val="cap" />
+                Capacity
+              </div>
+            )}
+            {selectedValue.some((x) => x === 4) && (
+              <div key={4} data-grid={layout1[0]}>
+                <LineChartBg val="trm" />
+                Power
+              </div>
+            )}
+            {selectedValue.some((x) => x === 5) && (
+              <div key={5} data-grid={layout1[0]}>
+                <LineChartBg val="tp1" />
+                Temperature 1
+              </div>
+            )}
+            {selectedValue.some((x) => x === 6) && (
+              <div key={6} data-grid={layout1[0]}>
+                <LineChartBg val="tp2" />
+                Temperature 2
+              </div>
+            )}
+            {selectedValue.some((x) => x === 7) && (
+              <div key={7} data-grid={layout1[0]}>
+                <LineChartBg val="soc" />
+                SOC
+              </div>
+            )}
+          </ReactGridLayout>
         </div>
-        <div>
-          {selectedValue.some((x) => x === 2) && (
-            <div>
-              <LineChartBg val="vt2" />
-              Voltage 2
-            </div>
-          )}
-        </div>
-        <div>
-          {selectedValue.some((x) => x === 3) && (
-            <div>
-              <LineChartBg val="cap" />
-              Capacity
-            </div>
-          )}
-        </div>
-        <div>
-          {selectedValue.some((x) => x === 4) && (
-            <div>
-              <LineChartBg val="trm" />
-              Power
-            </div>
-          )}
-        </div>
-        <div>
-          {selectedValue.some((x) => x === 5) && (
-            <div>
-              <LineChartBg val="tp1" />
-              Temperature 1
-            </div>
-          )}
-        </div>
-        <div>
-          {selectedValue.some((x) => x === 6) && (
-            <div>
-              <LineChartBg val="tp2" />
-              Temperature 2
-            </div>
-          )}
-        </div>
-        <div>
-          {selectedValue.some((x) => x === 7) && (
-            <div>
-              <LineChartBg val="soc" />
-              SOC
-            </div>
-          )}
-        </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
-};
-
-export default ShowMore;
+}

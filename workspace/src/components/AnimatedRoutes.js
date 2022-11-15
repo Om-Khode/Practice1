@@ -5,10 +5,9 @@ import Downloaded from "./pages/Downloaded";
 import Recent from "./pages/Recent";
 import Setting from "./pages/Setting";
 import Support from "./pages/Support";
-// import ShowMore from "./pages/ShowMore";
+import ShowMore from "./pages/ShowMore";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import GridLayout2 from "./GridLayout2";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -20,8 +19,7 @@ function AnimatedRoutes() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Home/device1" element={<Home />} />
         <Route path="/Home/device2" element={<Home deviceName="bb02" />} />
-        {/* <Route path="/Home/showMore" element={<ShowMore />} /> */}
-        <Route path="/Home/showMore" element={<GridLayout2 />} />
+        <Route path="/Home/showMore" element={<ShowMore />} />
         <Route path="/Bookmark" element={<Bookmark />} />
         <Route path="/Downloaded" element={<Downloaded />} />
         <Route path="/Recent" element={<Recent />} />

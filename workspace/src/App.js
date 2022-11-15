@@ -2,10 +2,7 @@ import Dashboard from "./components/Dashboard";
 import SideBar from "./components/SideBar";
 import React from "react";
 import "./components/pages/Home.css";
-// eslint-disable-next-line
 import AnimatedRoutes from "./components/AnimatedRoutes";
-// import GridLayout1 from "./components/GridLayout1";
-// import GridLayout2 from "./components/GridLayout2";
 
 function App() {
   return (
@@ -17,8 +14,6 @@ function App() {
       <div className="container">
         <AnimatedRoutes />
       </div>
-      {/* <GridLayout1 /> */}
-      {/* <GridLayout2 /> */}
     </>
   );
 }
