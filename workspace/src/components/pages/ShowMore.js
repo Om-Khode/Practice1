@@ -7,11 +7,13 @@ import LineChartBg from "../LineChartBg";
 import { motion } from "framer-motion";
 
 export default function ShowMore() {
-  let [layout1, setLayout] = useState([]);
+  let [layouts, setLayouts] = useState([]);
 
-  const [defaultProps, setDefaultProps] = useState({
-    isDraggable: false,
-    isResizable: false,
+  const [lock, setLock] = useState(false);
+
+  const [defaultProps] = useState({
+    isDraggable: true,
+    isResizable: true,
     items: 5,
     rowHeight: 60,
     preventCollision: false,
@@ -21,17 +23,15 @@ export default function ShowMore() {
     cols: 12,
   });
 
-  const [lock, setLock] = useState(false);
-
   const ReactGridLayout = WidthProvider(RGL);
 
   const addNewItem = (n) => {
-    // if (layout1.some((item) => item.i === n)) {
-    //   setLayout((current) => current.filter((item) => item.i !== n));
-    //   return layout1;
+    // if (layouts.some((item) => item.i === n)) {
+    //   setLayouts((current) => current.filter((item) => item.i !== n));
+    //   return layouts;
     // } else {
-    setLayout([
-      ...layout1,
+    setLayouts([
+      ...layouts,
       {
         i: n,
         x: 0,
@@ -40,7 +40,7 @@ export default function ShowMore() {
         h: 3,
       },
     ]);
-    return layout1;
+    return layouts;
     // }
   };
 
@@ -105,23 +105,12 @@ export default function ShowMore() {
   };
 
   function LockTheGrid() {
-    if (defaultProps.isDraggable === false) {
-      console.log("12");
-      setDefaultProps({
-        ...defaultProps,
-        isDraggable: true,
-        isResizable: true,
-      });
+    if (lock === false) {
+      setLock(true);
     } else {
-      console.log("13");
-      setDefaultProps({
-        ...defaultProps,
-        isDraggable: false,
-        isResizable: false,
-      });
+      setLock(false);
     }
-    console.log(defaultProps);
-    return defaultProps;
+    return lock;
   }
 
   return (
@@ -147,48 +136,46 @@ export default function ShowMore() {
           <button onClick={() => LockTheGrid()}>Lock</button>
           <ReactGridLayout
             {...defaultProps}
-            onDragStart={lock ? null : ""}
-            onLayoutChange={() => setLayout(layout1)}
+            onLayoutChange={(layout) => setLayouts(layout)}
           >
-            {console.log(defaultProps)}
             {selectedValue.some((x) => x === 1) && (
-              <div key={1} data-grid={layout1[0]}>
+              <div key={1} data-grid={layouts[0]}>
                 <LineChartBg val="vt1" />
                 Voltage 1
               </div>
             )}
             {selectedValue.some((x) => x === 2) && (
-              <div key={2} data-grid={layout1[0]}>
+              <div key={2} data-grid={layouts[0]}>
                 <LineChartBg val="vt2" />
                 Voltage 2
               </div>
             )}
             {selectedValue.some((x) => x === 3) && (
-              <div key={3} data-grid={layout1[0]}>
+              <div key={3} data-grid={layouts[0]}>
                 <LineChartBg val="cap" />
                 Capacity
               </div>
             )}
             {selectedValue.some((x) => x === 4) && (
-              <div key={4} data-grid={layout1[0]}>
+              <div key={4} data-grid={layouts[0]}>
                 <LineChartBg val="trm" />
                 Power
               </div>
             )}
             {selectedValue.some((x) => x === 5) && (
-              <div key={5} data-grid={layout1[0]}>
+              <div key={5} data-grid={layouts[0]}>
                 <LineChartBg val="tp1" />
                 Temperature 1
               </div>
             )}
             {selectedValue.some((x) => x === 6) && (
-              <div key={6} data-grid={layout1[0]}>
+              <div key={6} data-grid={layouts[0]}>
                 <LineChartBg val="tp2" />
                 Temperature 2
               </div>
             )}
             {selectedValue.some((x) => x === 7) && (
-              <div key={7} data-grid={layout1[0]}>
+              <div key={7} data-grid={layouts[0]}>
                 <LineChartBg val="soc" />
                 SOC
               </div>

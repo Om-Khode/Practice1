@@ -5,7 +5,7 @@ import Downloaded from "./pages/Downloaded";
 import Recent from "./pages/Recent";
 import Setting from "./pages/Setting";
 import Support from "./pages/Support";
-import ShowMore from "./pages/ShowMore";
+import ShowMore from "./pages/ShowMore2";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
