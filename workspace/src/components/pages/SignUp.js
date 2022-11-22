@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useHistory } from "react-router-dom";
 import "./SignUp.css";
 
 export default function SignUp() {
+  const history = useHistory()
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -29,6 +30,37 @@ export default function SignUp() {
     );
     setInputs({});
   };
+
+  const PostData = async( event)=>{
+    event.preventDefault();
+    const {first_name, last_name, email, password, confirm_password,company} = user;
+
+    const response = await fetch(
+      "/genUser2/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name,
+          last_name,
+          email,
+          password,
+          confirm_password,
+          company})
+        })
+
+        const data = await response.json();
+        if(response.status === 400 || !data){
+          window.alert("Invalid registration")
+        }else{
+          window.alert("Registration successful")
+        }
+
+        history.pushState("/genUser2/login")
+
+  }
 
   return (
     <div className="container">
@@ -137,7 +169,7 @@ export default function SignUp() {
                 Login
               </Link>
             </div>
-            <input type="submit" className="submit" />
+            <input type="submit" className="submit" onClick={PostData} />
           </div>
         </form>
       </div>
