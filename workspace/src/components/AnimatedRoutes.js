@@ -8,6 +8,7 @@ import Support from "./pages/Support";
 import ShowMore from "./pages/ShowMore2";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import Login from "./pages/Login";
 
 function AnimatedRoutes() {
   const location = useLocation();

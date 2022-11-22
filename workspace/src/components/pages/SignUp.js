@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./SignUp.css";
-import "./Login.css";
 
-export default function Login() {
+export default function SignUp() {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -48,8 +47,34 @@ export default function Login() {
         <div className="lastText">Lorem ipsum</div>
       </div>
       <div className="mainScreen">
-        <div className="signUp">Log In</div>
-        <form onSubmit={handleSubmit} className="form Login">
+        <div className="signUp">Sign Up</div>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="input-container">
+            <input
+              type="text"
+              name="firstname"
+              value={inputs.firstname || ""}
+              autoComplete="off"
+              onChange={handleChange}
+              className="signUpInput"
+            />
+            <label className={inputs.firstname && "filled"} htmlFor="firstname">
+              First Name
+            </label>
+          </div>
+          <div className="input-container">
+            <input
+              type="text"
+              name="lastname"
+              value={inputs.lastname || ""}
+              autoComplete="off"
+              onChange={handleChange}
+              className="signUpInput"
+            />
+            <label className={inputs.lastname && "filled"} htmlFor="lastname">
+              Last Name
+            </label>
+          </div>
           <div className="input-container">
             <input
               type="email"
@@ -70,23 +95,49 @@ export default function Login() {
               value={inputs.password || ""}
               autoComplete="off"
               onChange={handleChange}
-              className="signUpInput Bg"
+              className="signUpInput"
             />
             <label className={inputs.password && "filled"} htmlFor="password">
               Password
             </label>
           </div>
-          <div className="input-container fp">
-            <small>Forgot Password?</small>
+          <div className="input-container">
+            <input
+              type="password"
+              name="confpassword"
+              value={inputs.confpassword || ""}
+              autoComplete="off"
+              onChange={handleChange}
+              className="signUpInput"
+            />
+            <label
+              className={inputs.confpassword && "filled"}
+              htmlFor="confpassword"
+            >
+              Confirm Password
+            </label>
           </div>
-          <div className="bottomPart">
-            <div className="member Bg">
-              Don’t have an account yet?{" "}
-              <Link to="/SignUp" className="blue">
-                Sign Up
+          <div className="input-container">
+            <input
+              type="text"
+              name="company"
+              value={inputs.company || ""}
+              autoComplete="off"
+              onChange={handleChange}
+              className="signUpInput Bg"
+            />
+            <label className={inputs.company && "filled"} htmlFor="company">
+              Company / Organisation
+            </label>
+          </div>
+          <div>
+            <div className="member">
+              Already a member{" "}
+              <Link to="/Login" className="blue">
+                Login
               </Link>
             </div>
-            <input type="submit" className="submit Bg" />
+            <input type="submit" className="submit" />
           </div>
         </form>
       </div>

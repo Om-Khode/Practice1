@@ -1,9 +1,11 @@
 // import Dashboard from "./components/Dashboard";
 // import SideBar from "./components/SideBar";
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./components/pages/Login";
+import SignUp from "./components/pages/SignUp";
 // import "./components/pages/Home.css";
 // import AnimatedRoutes from "./components/AnimatedRoutes";
-import Login from "./components/pages/Login";
 
 function App() {
   return (
@@ -15,7 +17,12 @@ function App() {
       <div className="container">
         <AnimatedRoutes />
       </div> */}
-      <Login />
+      <Routes>
+        <Route>
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/Login" element={<Login />} />
+        </Route>
+      </Routes>
     </>
   );
 }
