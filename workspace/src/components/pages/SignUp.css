@@ -13,11 +13,6 @@
   box-sizing: inherit;
 }
 
-body {
-  background-color: #010203;
-  overflow: hidden;
-}
-
 .container {
   color: #ffffff;
   width: 100vw;
@@ -29,11 +24,13 @@ body {
 }
 
 .sideScreen {
-  width: 28vw;
-  height: 90vh;
+  /* width: 28vw; */
+  width: 40vw;
+  /* height: 90vh; */
+  height: 86vh;
   background-color: #2a2b2f;
   border-radius: 20px;
-  padding: 0px 0px 20px 40px;
+  padding: 0px 0px 60px 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,8 +41,9 @@ body {
   justify-content: flex-start;
   align-items: center;
   font-size: 18px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   /* margin-left: 40px; */
+  padding-top: 60px;
 }
 
 .comLogo {
@@ -101,7 +99,7 @@ body {
   align-items: center;
   /* background-color: blue; */
   margin: auto;
-  padding-bottom: 230px;
+  padding-bottom: 200px;
 }
 
 form {
@@ -135,8 +133,8 @@ form {
 }
 
 .member {
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -165,7 +163,7 @@ form {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 14px;
+  margin: 10px;
 }
 
 .input-container:focus-within label {
@@ -211,11 +209,11 @@ form {
   justify-content: center;
   align-items: center;
   position: relative;
-  top: -20px;
+  /* top: -10px; */
 }
 
 .fp {
   position: relative;
-  top: -23px;
-  left: 130px;
+  /* top: -23px; */
+  left: 155px;
 }

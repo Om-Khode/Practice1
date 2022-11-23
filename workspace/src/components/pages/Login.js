@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import "./Login.css";
 
 export default function Login() {
   const [inputs, setInputs] = useState({});
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -16,23 +18,17 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      "FirstName : " +
-        inputs.firstname +
-        "\nLastName : " +
-        inputs.lastname +
-        "\nEmail : " +
-        inputs.email +
-        "\nPassword : " +
-        inputs.password +
-        "\nCompany : " +
-        inputs.company
-    );
-    setInputs({});
+    if (inputs.email && inputs.password) {
+      alert("\nEmail : " + inputs.email + "\nPassword : " + inputs.password);
+      setInputs({});
+      navigate("/SignUp");
+    } else {
+      alert("Input all Fields!!!");
+    }
   };
 
   return (
-    <div className="container">
+    <div className="Signcontainer">
       <div className="sideScreen">
         <div className="company">
           <div className="comLogo"></div>
@@ -54,6 +50,7 @@ export default function Login() {
             <input
               type="email"
               name="email"
+              required
               value={inputs.email || ""}
               autoComplete="off"
               onChange={handleChange}
@@ -68,6 +65,7 @@ export default function Login() {
               type="password"
               name="password"
               value={inputs.password || ""}
+              required="on"
               autoComplete="off"
               onChange={handleChange}
               className="signUpInput Bg"
@@ -86,7 +84,7 @@ export default function Login() {
                 Sign Up
               </Link>
             </div>
-            <input type="submit" className="submit Bg" />
+            <input type="submit" className="submit" />
           </div>
         </form>
       </div>

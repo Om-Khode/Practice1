@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 export default function SignUp() {
   const [inputs, setInputs] = useState({});
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -15,19 +17,30 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      "FirstName : " +
-        inputs.firstname +
-        "\nLastName : " +
-        inputs.lastname +
-        "\nEmail : " +
-        inputs.email +
-        "\nPassword : " +
-        inputs.password +
-        "\nCompany : " +
-        inputs.company
-    );
-    setInputs({});
+    if (
+      inputs.firstname &&
+      inputs.lastname &&
+      inputs.email &&
+      inputs.password &&
+      inputs.confpassword
+    ) {
+      alert(
+        "FirstName : " +
+          inputs.firstname +
+          "\nLastName : " +
+          inputs.lastname +
+          "\nEmail : " +
+          inputs.email +
+          "\nPassword : " +
+          inputs.password +
+          "\nCompany : " +
+          inputs.company
+      );
+      setInputs({});
+      navigate("/Login");
+    } else {
+      alert("Input all Fields!!!");
+    }
   };
 
   return (

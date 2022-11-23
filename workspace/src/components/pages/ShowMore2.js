@@ -17,6 +17,7 @@ const ReactGridLayout = () => {
   const handleModify = (layouts, layout) => {
     const tempArray = widgetArray;
     setLayouts(layout);
+    // eslint-disable-next-line
     layouts?.map((position) => {
       tempArray[Number(position.i)].x = position.x;
       tempArray[Number(position.i)].y = position.y;
