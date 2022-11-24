@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
+import axios from "axios";
 
 export default function SignUp() {
   const [inputs, setInputs] = useState({});
@@ -37,18 +38,62 @@ export default function SignUp() {
           inputs.company
       );
       setInputs({});
-      navigate("/Login");
+      navigate("/Home");
     } else {
       alert("Input all Fields!!!");
     }
   };
 
+  // const PostData = async (event) => {
+  //   event.preventDefault();
+  //   const {
+  //     first_name,
+  //     last_name,
+  //     email,
+  //     password,
+  //     confirm_password,
+  //     company,
+  //   } = inputs;
+
+  //   let body = JSON.stringify({
+  //     first_name,
+  //     last_name,
+  //     email,
+  //     password,
+  //     confirm_password,
+  //     company,
+  //   });
+
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:8000/genUser2/create",
+  //       body,
+  //       config
+  //     );
+  //     console.log(response);
+  //     const data = await response.json();
+  //     if (response.status === 400 || !data) {
+  //       window.alert("Invalid registration");
+  //     } else {
+  //       window.alert("Registration successful");
+  //     }
+  //     navigate("http://localhost:8000/genUser2/login");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   return (
-    <div className="container">
+    <div className="Signcontainer">
       <div className="sideScreen">
-        <div className="company">
-          <div className="comLogo"></div>
-          <div className="comName">Company Logo</div>
+        <div className="Signcompany">
+          <div className="SigncomLogo"></div>
+          <div className="SigncomName">Company Logo</div>
         </div>
         <div className="mainText">
           <p className="journey">Start your journey with us.</p>

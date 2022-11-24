@@ -47,12 +47,11 @@
   border-radius: 5px;
 }
 
-.bar {
+.battery-bar {
   width: 10.8vw;
   background-color: transparent;
   position: relative;
   top: -52.5vh;
-  left: -0.55vw;
   border-radius: 5px;
   height: 26vh;
 }

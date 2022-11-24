@@ -68,7 +68,7 @@ body {
   display: inline-grid;
   grid-template-columns: auto;
   position: relative;
-  top: -45vh;
+  top: -47vh;
   border-radius: 20px;
   background-color: #252525;
 }
@@ -96,7 +96,7 @@ body {
   text-align: center;
   position: relative;
   width: 100%;
-  top: -47.5vh;
+  top: -48.5vh;
 }
 
 .showMore a {
@@ -166,16 +166,6 @@ body {
 
 .type2 {
   top: -39.3vh;
-}
-
-.up {
-  /* translate: 0px -1000px; */
-  transition: all 1s ease;
-}
-
-.down {
-  transition: all 1s ease;
-  /* overflow: hidden; */
 }
 
 .card-text {

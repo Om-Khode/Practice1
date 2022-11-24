@@ -13,7 +13,7 @@
   box-sizing: inherit;
 }
 
-.container {
+.Signcontainer {
   color: #ffffff;
   width: 100vw;
   height: 100vh;
@@ -36,17 +36,14 @@
   justify-content: space-between;
 }
 
-.company {
+.Signcompany {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   font-size: 18px;
-  /* margin-top: 30px; */
-  /* margin-left: 40px; */
   padding-top: 60px;
 }
 
-.comLogo {
+.SigncomLogo {
   width: 50px;
   height: 50px;
   background-color: #d9d9d9;
@@ -102,7 +99,7 @@
   padding-bottom: 200px;
 }
 
-form {
+.form {
   width: 450px;
   height: 250px;
   /* background-color: red; */

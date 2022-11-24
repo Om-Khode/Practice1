@@ -42,7 +42,7 @@ const ReactGridLayout = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <button onClick={() => handleAdd()}>Add Widget</button>
 
       <ResponsiveReactGridLayout

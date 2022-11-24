@@ -30,9 +30,9 @@ export default function Login() {
   return (
     <div className="Signcontainer">
       <div className="sideScreen">
-        <div className="company">
-          <div className="comLogo"></div>
-          <div className="comName">Company Logo</div>
+        <div className="Signcompany">
+          <div className="SigncomLogo"></div>
+          <div className="SigncomName">Company Logo</div>
         </div>
         <div className="mainText">
           <p className="journey">Start your journey with us.</p>

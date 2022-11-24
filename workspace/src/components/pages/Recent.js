@@ -7,6 +7,7 @@ export default function Recent() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      className="container"
     >
       Recent
     </motion.div>

@@ -105,9 +105,8 @@ export default function Battery() {
           <div className="vector"></div>
           <div className="vector"></div>
         </div>
-        <div className="bar">
+        <div className="battery-bar">
           <Bar data={dataa} options={options} />
-          {/* <p className="status">Status: {data.data[0].soc} %</p> */}
         </div>
       </div>
     </>
