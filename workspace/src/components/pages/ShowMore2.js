@@ -7,18 +7,18 @@ import "./ShowMore.css";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const ReactGridLayout = () => {
-  const [layouts, setLayouts] = useState(null);
+  const [layout, setlayout] = useState(null);
   const [widgetArray, setWidgetArray] = useState([
-    { i: "widget1", x: 0, y: 0, w: 2, h: 2 },
-    { i: "widget2", x: 2, y: 2, w: 2, h: 2 },
-    { i: "widget3", x: 4, y: 4, w: 2, h: 2 },
+    { i: "widget1", x: 0, y: 0, w: 1, h: 1 },
+    { i: "widget2", x: 1, y: 2, w: 1, h: 1 },
+    { i: "widget3", x: 2, y: 4, w: 1, h: 1 },
   ]);
 
-  const handleModify = (layouts, layout) => {
+  const handleModify = (layout, layouts) => {
     const tempArray = widgetArray;
-    setLayouts(layout);
+    setlayout(layouts);
     // eslint-disable-next-line
-    layouts?.map((position) => {
+    layout?.map((position) => {
       tempArray[Number(position.i)].x = position.x;
       tempArray[Number(position.i)].y = position.y;
       tempArray[Number(position.i)].width = position.w;
@@ -48,7 +48,7 @@ const ReactGridLayout = () => {
       <ResponsiveReactGridLayout
         onLayoutChange={handleModify}
         verticalCompact={true}
-        layout={layouts}
+        layout={layout}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         preventCollision={false}
         cols={{ lg: 8, md: 8, sm: 4, xs: 2, xxs: 2 }}
@@ -72,9 +72,9 @@ const ReactGridLayout = () => {
                 w: widget?.w,
                 h: widget?.h,
                 i: widget.i,
-                minW: 2,
+                minW: 1,
                 maxW: Infinity,
-                minH: 2,
+                minH: 1,
                 maxH: Infinity,
                 isDraggable: true,
                 isResizable: true,
