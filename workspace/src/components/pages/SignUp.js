@@ -44,49 +44,49 @@ export default function SignUp() {
     }
   };
 
-  // const PostData = async (event) => {
-  //   event.preventDefault();
-  //   const {
-  //     first_name,
-  //     last_name,
-  //     email,
-  //     password,
-  //     confirm_password,
-  //     company,
-  //   } = inputs;
+  const PostData = async (event) => {
+    event.preventDefault();
+    const {
+      first_name,
+      last_name,
+      email,
+      password,
+      confirm_password,
+      company,
+    } = inputs;
 
-  //   let body = JSON.stringify({
-  //     first_name,
-  //     last_name,
-  //     email,
-  //     password,
-  //     confirm_password,
-  //     company,
-  //   });
+    let body = JSON.stringify({
+      first_name,
+      last_name,
+      email,
+      password,
+      confirm_password,
+      company,
+    });
 
-  //   let config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8000/genUser2/create",
-  //       body,
-  //       config
-  //     );
-  //     console.log(response);
-  //     const data = await response.json();
-  //     if (response.status === 400 || !data) {
-  //       window.alert("Invalid registration");
-  //     } else {
-  //       window.alert("Registration successful");
-  //     }
-  //     navigate("http://localhost:8000/genUser2/login");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/genUser2/create",
+        body,
+        config
+      );
+      console.log(response);
+      const data = await response.json();
+      if (response.status === 400 || !data) {
+        window.alert("Invalid registration");
+      } else {
+        window.alert("Registration successful");
+      }
+      navigate("http://localhost:8000/genUser2/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="Signcontainer">
@@ -195,7 +195,7 @@ export default function SignUp() {
                 Login
               </Link>
             </div>
-            <input type="submit" className="submit" />
+            <input type="submit" className="submit" onClick={PostData} />
           </div>
         </form>
       </div>
