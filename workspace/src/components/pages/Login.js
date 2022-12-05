@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import "./Login.css";
+import axios from "axios";
 
 export default function Login() {
   const [inputs, setInputs] = useState({});
@@ -24,6 +25,40 @@ export default function Login() {
       navigate("/SignUp");
     } else {
       alert("Input all Fields!!!");
+    }
+  };
+  const loginData = async (event) => {
+    event.preventDefault();
+    const {
+      email,
+      password
+    } = inputs;
+
+    let body = JSON.stringify({
+      email,
+      password,
+  });
+
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/genUser2/login",
+        body,
+        config
+      );
+      console.log(response);
+      const data = await response;
+      if (response.status === 400 || !data) {
+        window.alert("Invalid inputs");
+      } else {
+        window.alert("Login successful");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -84,7 +119,7 @@ export default function Login() {
                 Sign Up
               </Link>
             </div>
-            <input type="submit" className="submit" />
+            <input type="submit" className="submit" onClick={loginData} />
           </div>
         </form>
       </div>
