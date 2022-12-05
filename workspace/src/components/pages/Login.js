@@ -46,7 +46,7 @@ export default function Login() {
     };
     try {
       const response = await axios.post(
-        "http://localhost:8000/genUser2/login",
+        "http://172.104.207.9:8000/genUser2/login",
         body,
         config
       );
